@@ -11,17 +11,17 @@ class GossipController < ApplicationController
   end
 
   def new
+  @gossip = Gossip.new
   end
 
-  def create
-    # puts "$" * 60
-    # puts "dans le Create ceci est le contenu de params :"
-    # puts params[:content]
-    # puts params[:title]
-    # puts "$" * 60    
-    @gossip = Gossip.new('content' => params[:content], 'title' => params[:title], 'user_id' => 2)
-    @gossip.save
-
+  def create    
+    @gossip = Gossip.new(content: params[:content], title: params[:title], user_id: 2)
+    
+    if @gossip.save
+      redirect_to root_path
+    else
+      render 'new'
+    end
   end
 
   def edit
