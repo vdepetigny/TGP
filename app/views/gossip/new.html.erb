@@ -1,2 +1,14 @@
-<h1>Gossip#new</h1>
-<p>Find me in app/views/gossip/new.html.erb</p>
+<%= form_tag url_for(action: 'create'), method: "post" do %>
+	  
+	  <br /> <br />
+	  <%= label_tag 'Title' %>
+      <%= text_field_tag 'title', @gossip %>
+      <br /> <br />
+
+      <%= label_tag 'Content' %>
+      <%= text_area_tag 'content', @gossip %>
+      <br /> <br />
+
+<%= submit_tag "Créer Potins" %>
+
+<% end %>
