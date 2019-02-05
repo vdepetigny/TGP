@@ -1,0 +1,16 @@
+<div class="container-fluid">
+	<div class="card text-center mt-3">
+	  <div class="card-header">
+	    <h1> Gossip numéro <%=@gossip_number%></h1>
+	  </div>
+	  <div class="card-body">
+	    <h4 class="card-title"><%= @gossip_identity.user.first_name %> <%= @gossip_identity.user.last_name %> </h4>
+	    <h5 class="card-title"><%= @gossip_identity.title %></h5>
+	    <p class="card-text"><%= @gossip_identity.content %></p>
+	    <%= link_to "Profil de l'auteur", user_path(@gossip_identity.user.id), :class => "btn btn-primary" %>
+	  </div>
+	  <div class="card-footer text-muted">
+	    Date de création : <%= @gossip_identity.created_at.strftime("%d/%m/%Y") %> 
+	  </div>
+	</div>
+</div>
