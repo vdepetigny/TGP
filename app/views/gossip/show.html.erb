@@ -1,16 +1,17 @@
-<div class="container-fluid">
-	<div class="card text-center mt-3">
-	  <div class="card-header">
-	    <h1> Gossip numéro <%=@gossip_number%></h1>
-	  </div>
-	  <div class="card-body">
-	    <h4 class="card-title"><%= @gossip_identity.user.first_name %> <%= @gossip_identity.user.last_name %> </h4>
-	    <h5 class="card-title"><%= @gossip_identity.title %></h5>
-	    <p class="card-text"><%= @gossip_identity.content %></p>
-	    <%= link_to "Profil de l'auteur", user_path(@gossip_identity.user.id), :class => "btn btn-primary" %>
-	  </div>
-	  <div class="card-footer text-muted">
-	    Date de création : <%= @gossip_identity.created_at.strftime("%d/%m/%Y") %> 
-	  </div>
-	</div>
+<div class="card text-center mt-3">
+  <div class="card-header">
+	<h1> Gossip numéro <%=params[:id]%></h1>
+  </div>
+  <div class="card-body">
+	<h4 class="card-title"><%= @gossip.user.first_name %> <%= @gossip.user.last_name %> </h4></br>
+	<h5 class="card-text"><%= @gossip.title %></h5>
+	<p class="card-text"><%= @gossip.content %></p>
+	<%= link_to "Editer le potin", edit_gossip_path(@gossip.id), class: "btn btn-secondary" %>
+	<%= link_to "Supprimer le gossip", gossip_path(@gossip.id), method: "delete", class: "btn btn-danger", data: { confirm: "Vous-êtes vraiment sur ?"}%>
+  </div>
+  <div class="card-footer text-muted">
+	  Profil de l'auteur : <%= link_to @gossip.user.first_name, user_path(@gossip.user.id), class: "text-primary"  %></br>   
+	  Ville de l'auteur : <%= link_to @gossip.user.city.name, city_path(@gossip.user.city.id), class: "text-primary"  %></br>
+	  Date de création : <%= @gossip.created_at.strftime("%d/%m/%Y") %>	     
+  </div>
 </div>

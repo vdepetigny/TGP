@@ -1,17 +1,25 @@
-<div class="container-fluid">
-	<h2 class="d-flex justify-content-center mt-3">Bienvenue sur The Gossip Project</h2>
-		<div class="row mt-3">
-			<% @all_gossip.each_with_index do |gossip, i| %>
+<% if flash[:notice] %>
+  <div class="alert alert-success" role="alert">
+   <div class="notice"> 
+   	 <%=flash[:notice] %> 
+     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+       <span aria-hidden="true">&times;</span>
+     </button>
+   </div>
+  </div>
+<% end %>	
 
-					<div class="card mx-auto mb-5" style="width: 15rem;">
-			  			<div class="card-body">
-			    		<h5 class="card-title"><%= gossip.user.first_name %> <%= gossip.user.last_name %></h5>
-			    		<p class="card-text"><%= gossip.title %></p>
-			    		<a href="/gossip/<%= i%>" class="btn btn-primary">Voir le potin</a>
-			  			</div>
-					</div>
+<h2 class="d-flex justify-content-center mt-3">Bienvenue sur The Gossip Project</h2>
 
-			<% end %>
+<div class="row mt-3">
+	<% @all_gossip.each_with_index do |gossip, id| %>
+	  <div class="card mx-auto mb-5" style="width: 15rem;">
+		<div class="card-body">
+		 <h5 class="card-title"><%= gossip.user.first_name %> <%= gossip.user.last_name %></h5>
+		 <p class="card-text"><%= gossip.title %></p>
+		 <%= link_to "Voir le potin", gossip_path(gossip.id), :class => "btn btn-secondary"%>
 		</div>
+	  </div>
+	<% end %>
 </div>
 

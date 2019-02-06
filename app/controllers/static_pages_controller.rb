@@ -7,6 +7,6 @@ class StaticPagesController < ApplicationController
   end
 
   def welcome
-  	@first_name = params["id"]
+  	@first_name = params[:id]
   end
 end

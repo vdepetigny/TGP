@@ -6,16 +6,16 @@ Tag.destroy_all
 JoinTableTagGossip.destroy_all
 Message.destroy_all
 
-10.times do
- city = City.create(name: Faker::Address.city, zip_code: Faker::Address.zip_code)
+4.times do
+ city = City.create(name: Faker::Address.city, zip_code: "#{rand(00..99)}#{rand(00..99)}#{rand(00..99)}")
 end
 
 10.times do
  user = User.create(first_name: Faker::Name.first_name,last_name: Faker::Name.last_name, description: Faker::Friends.quote, email: Faker::Internet.email, age: Faker::Number.number(2), city: City.all.sample)
 end
 
-20.times do
- gossip = Gossip.create(title: Faker::Hipster.sentence(3), content: Faker::HarryPotter.quote, user: User.all.sample)
+30.times do
+ gossip = Gossip.create(title: Faker::Ancient.titan, content: Faker::HarryPotter.quote, user: User.all.sample)
 end
 
 10.times do
