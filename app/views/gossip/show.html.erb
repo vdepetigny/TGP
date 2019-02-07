@@ -28,7 +28,7 @@
   <h1>Ajouter un commentaire</h1>
   </div>
   <%= form_tag(gossip_comment_index_path(params[:id]), method: :create) do %>
-
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
   <div class="card-body text-secondary">
     <div class="form-group">
       <%= label_tag 'Contenu du commentaire' %>

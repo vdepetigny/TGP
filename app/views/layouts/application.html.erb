@@ -26,13 +26,13 @@
           
           <% if session[:user_id] != nil %>
             <div class="btn-group">
-              <button type="button" class="btn btn-dark"><%= User.find_by(id: session[:user_id]).first_name %></button>
+              <button type="button" class="btn btn-dark"><%= current_user.first_name %></button>
               <button type="button" class="btn btn-dark dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="sr-only">Toggle Dropdown</span>
               </button>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                <%= link_to "Mon profil", user_path(session[:user_id]), class: "dropdown-item" %>
-                <%= link_to "Se déconnecter", session_path(session[:user_id]), method: :delete, class: "dropdown-item", data: { confirm: "Quitter définitivement ?"} %>
+                <%= link_to "Mon profil", user_path(current_user.id), class: "dropdown-item" %>
+                <%= link_to "Se déconnecter", session_path(current_user.id), method: :delete, class: "dropdown-item", data: { confirm: "Quitter définitivement ?"} %>
               </div>
             </div>
           <%else%>

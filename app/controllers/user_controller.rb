@@ -18,7 +18,7 @@ class UserController < ApplicationController
     
      if @user.save
        flash[:notice] = "Vous Vous êtes bien enregistré(e)!"
-       session[:user_id] = @user.id
+       log_in(@user) #session[:user_id] = user.id dans session_helper
        redirect_to root_path
      else
        render :new
