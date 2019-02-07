@@ -32,11 +32,13 @@
               </button>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
                 <%= link_to "Mon profil", user_path(current_user.id), class: "dropdown-item" %>
+                
                 <%= link_to "Se déconnecter", session_path(current_user.id), method: :delete, class: "dropdown-item", data: { confirm: "Quitter définitivement ?"} %>
+                
               </div>
             </div>
-          <%else%>
           
+          <%else%>
           <%= link_to "Se connecter / S'inscrire", new_session_path, class: "nav-item nav-link"%>
           
           <%end%>

@@ -1,5 +1,6 @@
 class GossipController < ApplicationController
 before_action :authenticate_user, only: [:new, :edit, :destroy]
+before_action :verify_user_rights, only: [:edit, :destroy]
 
   def index
     @all_gossip = Gossip.all
@@ -17,7 +18,6 @@ before_action :authenticate_user, only: [:new, :edit, :destroy]
   end
 
   def create
-    
     @gossip = Gossip.new(content: params[:content], title: params[:title], user: current_user) # current_user = User.find_by(id: session[:user_id]) dans session_helper
     
     if @gossip.save
@@ -29,7 +29,7 @@ before_action :authenticate_user, only: [:new, :edit, :destroy]
   end
 
   def edit
-    @gossip = Gossip.find(params[:id])
+      @gossip = Gossip.find(params[:id])
   end
 
   def update
@@ -42,6 +42,7 @@ before_action :authenticate_user, only: [:new, :edit, :destroy]
     else
       render 'edit'
     end
+
   end
 
   def destroy
@@ -56,9 +57,15 @@ before_action :authenticate_user, only: [:new, :edit, :destroy]
 
   def authenticate_user
     unless current_user
-      flash[:danger] = "Please log in."
+      flash[:danger] = "Merci de vous connecter"
       redirect_to new_session_path
     end
   end
 
+  def verify_user_rights
+    unless current_user == Gossip.find(params[:id]).user
+      flash[:danger] = "Vous ne pouvez pas faire ça !!"
+      redirect_to root_path
+    end
+  end
 end
