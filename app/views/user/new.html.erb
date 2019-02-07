@@ -1,2 +1,17 @@
-<h1>User#new</h1>
-<p>Find me in app/views/user/new.html.erb</p>
+
+
+<%= form_tag url_for(action: 'create'), method: "post" do %>
+  <%= text_field_tag 'first_name', '', class: 'form-control', placeholder: 'Prénom'%>
+  <%= text_field_tag 'last_name', '', class: 'form-control', placeholder: 'Nom'%>
+  <%= text_field_tag 'age', '', class: 'form-control', placeholder: 'Age'%>
+
+  <%= text_field_tag 'email', '', class: 'form-control', placeholder: 'Email'%>
+  <%= password_field_tag 'password', '', class: 'form-control', placeholder: 'Password'%> 
+
+  <%= text_field_tag 'name', '', class: 'form-control', placeholder: 'Ville'%>
+  <%= text_field_tag 'zip_code', '', class: 'form-control', placeholder: 'Code postal'%>
+
+  <%= text_area_tag 'description', '', class: 'form-control', placeholder: 'Décris-toi !'%>  
+
+  <%= submit_tag "Enregistrer", class: "btn btn-secondary" %>
+<% end %>

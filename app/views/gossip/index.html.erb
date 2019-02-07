@@ -9,7 +9,15 @@
   </div>
 <% end %>	
 
+<% if session[:user_id] != nil %>
 <h2 class="d-flex justify-content-center mt-3">Bienvenue <%= User.find_by(id: session[:user_id]).first_name %>, sur The Gossip Project</h2>
+<%else%>
+
+<h2 class="d-flex justify-content-center 3">Bienvenue sur The Gossip Project</h2>
+<p class="d-flex justify-content-center mt-3">Merci de vous connecter</p>
+<%= link_to "Se connecter / S'inscrire", new_session_path, class: "d-flex justify-content-center mt-3 btn btn-info"%>
+
+<%end%>
 
 <div class="row mt-3">
 	<% @all_gossip.each_with_index do |gossip, id| %>

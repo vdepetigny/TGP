@@ -21,8 +21,18 @@
           <%= link_to "New Gossip", new_gossip_path, class: "nav-item nav-link"%>
           <%= link_to "Team", team_path, class: "nav-item nav-link"%>
           <%= link_to "Contact", contact_path, class: "nav-item nav-link"%>
-          <%= link_to "Connection", new_session_path, class: "nav-item nav-link"%>
         </div>
+        <div class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+          
+          <% if session[:user_id] != nil %>
+          <%= link_to "Se déconnecter", session_path(session[:user_id]), method: :delete, class: "nav-item nav-link", data: { confirm: "Vous-êtes vraiment sur ?"} %>
+          
+          <%else%>
+          <%= link_to "Se connecter / S'inscrire", new_session_path, class: "nav-item nav-link"%>
+          
+          <%end%>
+
+        </div>  
         </div>
       </div>
     </nav>
