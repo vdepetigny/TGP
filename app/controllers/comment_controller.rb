@@ -26,8 +26,8 @@ class CommentController < ApplicationController
 
  def update
   @comment = Comment.find(params[:id])
-    post_params = params[:gossip]
-    
+puts "*"*70
+  puts params 
     if @comment.update(content: params[:content], user_id: User.all.sample.id , gossip_id: params[:gossip_id])
       flash[:notice] = "Vous avez mis-à-jour un potin avec succès"    
       redirect_to root_path
