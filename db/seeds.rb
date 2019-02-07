@@ -29,3 +29,7 @@ end
 5.times do
  message = Message.create(content: Faker::FamousLastWords.last_words, recipient: User.all.sample, sender: User.all.sample)
 end
+
+100.times do
+ comment = Comment.create(content: Faker::Movie.quote, user: User.all.sample, gossip: Gossip.all.sample)
+end

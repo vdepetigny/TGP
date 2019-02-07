@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
-resources :gossip
+resources :gossip do
+	resources :comment
+end
 resources :user
 resources :city
+
 root 'gossip#index'
 get '/team', to: 'static_pages#team'
 get '/contact', to: 'static_pages#contact'
