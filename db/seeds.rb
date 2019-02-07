@@ -1,10 +1,10 @@
 require 'faker'
-User.destroy_all
-City.destroy_all
-Gossip.destroy_all
-Tag.destroy_all
-JoinTableTagGossip.destroy_all
-Message.destroy_all
+# User.destroy_all
+# City.destroy_all
+# Gossip.destroy_all
+# Tag.destroy_all
+# JoinTableTagGossip.destroy_all
+# Message.destroy_all
 
 4.times do
  city = City.create(name: Faker::Address.city, zip_code: "#{rand(00..99)}#{rand(00..99)}#{rand(00..99)}")
