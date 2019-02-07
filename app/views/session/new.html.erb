@@ -13,7 +13,7 @@
 <%= form_tag session_index_path, method: "post" do %>
   <%= text_field_tag 'email', '', class: 'form-control', placeholder: 'Email'%>
   <%= password_field_tag 'password', '', class: 'form-control', placeholder: 'Password'%></br>
-  <%= submit_tag "Login", class: "btn btn-primary" %>
+  <%= submit_tag "Login", class: "btn btn-info" %>
 <% end %></br>
 
 <%= link_to "Sign in", new_user_path, class: "btn btn-secondary"%>

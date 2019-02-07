@@ -25,9 +25,18 @@
         <div class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
           
           <% if session[:user_id] != nil %>
-          <%= link_to "Se déconnecter", session_path(session[:user_id]), method: :delete, class: "nav-item nav-link", data: { confirm: "Vous-êtes vraiment sur ?"} %>
-          
+            <div class="btn-group">
+              <button type="button" class="btn btn-dark"><%= User.find_by(id: session[:user_id]).first_name %></button>
+              <button type="button" class="btn btn-dark dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="sr-only">Toggle Dropdown</span>
+              </button>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                <%= link_to "Mon profil", user_path(session[:user_id]), class: "dropdown-item" %>
+                <%= link_to "Se déconnecter", session_path(session[:user_id]), method: :delete, class: "dropdown-item", data: { confirm: "Quitter définitivement ?"} %>
+              </div>
+            </div>
           <%else%>
+          
           <%= link_to "Se connecter / S'inscrire", new_session_path, class: "nav-item nav-link"%>
           
           <%end%>
