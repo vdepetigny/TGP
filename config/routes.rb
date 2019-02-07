@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get 'session/destroy'
 resources :gossip do
 	resources :comment
+	resources :likes
 end
 resources :user
 resources :city

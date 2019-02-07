@@ -46,11 +46,6 @@ before_action :verify_user_rights, only: [:edit, :destroy]
   end
 
   def destroy
-    @gossip = Gossip.find(params[:id])
-    @gossip.destroy
-
-    flash[:notice] = "Vous avez supprimé un potin avec succès"
-    redirect_to root_path
   end
 
   private

@@ -8,9 +8,10 @@
         <div class="form-group">
           <%= label_tag 'Contenu du commentaire' %>
           <%= text_area_tag :content, @comment.content, class:'form-control', placeholder: @comment.content %>
-          <br /> <br />
+          <br /> 
 
           <%= submit_tag "Éditer le commentaire", class: "btn btn-secondary" %>
+          <%= link_to "Supprimer le commentaire", gossip_comment_path(@comment.gossip.id, @comment.id), method: "delete", data: { confirm: "Tu es sûr-e ?" }, class: "btn btn-danger"  %>
         <% end %>
       </div>
     </div>
