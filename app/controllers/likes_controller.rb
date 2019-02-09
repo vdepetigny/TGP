@@ -1,15 +1,16 @@
 class LikesController < ApplicationController
+before_action :authenticate_user, only: [:new, :edit, :destroy]
 before_action :find_gossip
 before_action :find_like, only: [:destroy]
 
   def create
-         @gossip.likes.create(user_id: current_user.id)
-	
-    if already_liked?
-      flash[:notice] = "Tu ne peux pas liker plus d'une fois"
-     else
-     redirect_to root_path
-    end
+      if already_liked?
+        flash[:notice] = "Tu ne peux pas liker plus d'une fois"
+      else
+       flash[:notice] = "Tu as liké comme un bosse!" 
+       @gossip.likes.create(user_id: current_user.id)
+       redirect_to gossip_path(params[:gossip_id])
+      end
   end
 
    def destroy
@@ -17,8 +18,9 @@ before_action :find_like, only: [:destroy]
        flash[:notice] = "Tu ne peux pas enlever des coeurs comme ça..."
      else
        @like.destroy
+       flash[:danger] = "Like pulvérisé"
    	end
-   	  redirect_to gossip_path(@gossip)
+   	  redirect_to gossip_path(params[:gossip_id])
    end
 
   private

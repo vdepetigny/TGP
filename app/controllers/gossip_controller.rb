@@ -4,7 +4,6 @@ before_action :verify_user_rights, only: [:edit, :destroy]
 
   def index
     @all_gossip = Gossip.all
-    @all_gossip
   end
 
   def show

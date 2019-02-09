@@ -21,6 +21,7 @@
           <%= link_to "New Gossip", new_gossip_path, class: "nav-item nav-link"%>
           <%= link_to "Team", team_path, class: "nav-item nav-link"%>
           <%= link_to "Contact", contact_path, class: "nav-item nav-link"%>
+          <%= link_to "Random", gossip_path(Gossip.all.sample.id), class: "nav-item nav-link"%>
         </div>
         <div class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
           
@@ -40,7 +41,6 @@
           
           <%else%>
           <%= link_to "Se connecter / S'inscrire", new_session_path, class: "nav-item nav-link"%>
-          
           <%end%>
 
         </div>  

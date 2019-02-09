@@ -11,6 +11,7 @@
 		  <div class="card-body">
 		  <h5 class="card-title"><%= gossip.title %></h5>
 		  <p class="card-text"><%= gossip.content %></p>
+		  <%= link_to "Voir le potin", gossip_path(gossip.id), :class => "btn btn-secondary"%>
 		  </div>
 		</div>
 	  <% end %>

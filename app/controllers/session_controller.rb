@@ -6,7 +6,8 @@ class SessionController < ApplicationController
     user = User.find_by(email: params[:email])
 
 	if user && user.authenticate(params[:password])
-    log_in(user)    #session[:user_id] = user.id dans session_helper
+    log_in(user)    #cf. session_helper
+    remember user #cf. session_helper
 	  redirect_to root_path
 	else
 	  flash.now[:danger] = 'Invalid email/password combination'

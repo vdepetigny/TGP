@@ -1,13 +1,36 @@
+<% if flash[:notice] %>
+  <div class="alert alert-success" role="alert">
+   <div class="notice"> 
+     <%=flash[:notice] %> 
+     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+       <span aria-hidden="true">&times;</span>
+     </button>
+   </div>
+  </div>
+<% end %> 
+
+<% if flash[:danger] %>
+  <div class="alert alert-danger" role="alert">
+   <div class="notice"> 
+     <%=flash[:danger] %> 
+     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+       <span aria-hidden="true">&times;</span>
+     </button>
+   </div>
+  </div>
+<% end %>
+
+
 <div class="card text-center mt-3">
   <div class="card-header">
-	<h1> Gossip numéro <%=params[:id]%></h1>
+    <h1> Gossip numéro <%=params[:id]%></h1>
   </div>
   <div class="card-body">
-	<h4 class="card-title"><%= @gossip.user.first_name %> <%= @gossip.user.last_name %> </h4></br>
-	<h5 class="card-text"><%= @gossip.title %></h5>
-	<p class="card-text"><%= @gossip.content %></p>
-	<%= link_to "Editer le potin", edit_gossip_path(@gossip.id), class: "btn btn-secondary" %>
-	<%= link_to "Supprimer le gossip", gossip_path(@gossip.id), method: "delete", class: "btn btn-danger", data: { confirm: "Vous-êtes vraiment sur ?"}%>
+	  <h4 class="card-title"><%= @gossip.user.first_name %> <%= @gossip.user.last_name %> </h4></br>
+	  <h5 class="card-text"><%= @gossip.title %></h5>
+	  <p class="card-text"><%= @gossip.content %></p>
+	  <%= link_to "Editer le potin", edit_gossip_path(@gossip.id), class: "btn btn-secondary" %>
+	  <%= link_to "Supprimer le gossip", gossip_path(@gossip.id), method: "delete", class: "btn btn-danger", data: { confirm: "Vous-êtes vraiment sur ?"}%>
   </div>
   <div class="card-footer text-muted">
 	  Profil de l'auteur : <%= link_to @gossip.user.first_name, user_path(@gossip.user.id), class: "text-primary"  %></br>   
@@ -20,10 +43,9 @@
 
 <% pre_like = @gossip.likes.find { |like| like.user_id == current_user.id} %>
 <% if pre_like %>
-Tu as déjà liké
+  <%= button_to 'Unlike', gossip_like_path(params[:id], pre_like), method: :delete %>
 <% else %>
-
-  <%= button_to 'Like', gossip_likes_path(params[:id]), method: :gossip %>
+  <%= button_to 'Like', gossip_likes_path(params[:id]), method: :post %>
 <% end %>
 
 <ul class="mt-3">
