@@ -1,4 +1,13 @@
-
+<% if @user.errors.any? %>
+  <div class="alert alert-danger" role="alert">
+    <p>Il manque des informations...</p>
+      <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul> 
+  </div>
+<% end %>
 
 <%= form_tag url_for(action: 'create'), method: "post" do %>
   <%= text_field_tag 'first_name', '', class: 'form-control', placeholder: 'Prénom'%>
@@ -6,12 +15,14 @@
   <%= text_field_tag 'age', '', class: 'form-control', placeholder: 'Age'%>
 
   <%= text_field_tag 'email', '', class: 'form-control', placeholder: 'Email'%>
-  <%= password_field_tag 'password', '', class: 'form-control', placeholder: 'Password'%> 
+  <%= password_field_tag 'password', '', class: 'form-control', placeholder: 'Password *'%> 
 
   <%= text_field_tag 'name', '', class: 'form-control', placeholder: 'Ville'%>
   <%= text_field_tag 'zip_code', '', class: 'form-control', placeholder: 'Code postal'%>
 
   <%= text_area_tag 'description', '', class: 'form-control', placeholder: 'Décris-toi !'%>  
+  
+  <h6 class="font-italic">* Minimum 6 caractères</h6>
 
   <%= submit_tag "Enregistrer", class: "btn btn-secondary" %>
 <% end %>

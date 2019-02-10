@@ -11,9 +11,6 @@ class UserController < ApplicationController
   end
 
   def create
-    
-    
-    
     @user = User.new(first_name: params[:first_name], last_name: params[:last_name], description: params[:description], email: params[:email], age: params[:age], password: params[:password], city: City.all.sample)
     
      if @user.save
@@ -21,8 +18,8 @@ class UserController < ApplicationController
        log_in(@user) #session[:user_id] = user.id dans session_helper
        redirect_to root_path
      else
-       render :new
-       puts @user.errors.messages
+      flash.now[:danger] = 'Il manque des informations...'
+      render 'new'      
     end
   end
 

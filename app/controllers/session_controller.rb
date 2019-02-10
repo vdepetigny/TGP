@@ -10,7 +10,7 @@ class SessionController < ApplicationController
     remember user #cf. session_helper
 	  redirect_to root_path
 	else
-	  flash.now[:danger] = 'Invalid email/password combination'
+	  flash.now[:danger] = 'Email et/ou password non valide'
 	  render 'new'
 	end
 
