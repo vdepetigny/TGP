@@ -1,12 +1,10 @@
 class SessionController < ApplicationController
-  def new
-  end
-
+  
   def create
     user = User.find_by(email: params[:email])
 
 	if user && user.authenticate(params[:password])
-    log_in(user)    #cf. session_helper
+    log_in(user) #cf. session_helper
     remember user #cf. session_helper
 	  redirect_to root_path
 	else
@@ -16,7 +14,7 @@ class SessionController < ApplicationController
 
   end
   def destroy
-  	session.delete(:user_id)
+  	session.delete(:user_id) #cf. session_helper
   	redirect_to root_path
   end
 end
